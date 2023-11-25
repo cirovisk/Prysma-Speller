@@ -4,6 +4,24 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QLabe
 import os
 
 class MainWindow(QWidget):
+    """
+    Represents the main window of the application.
+
+    This class provides a graphical user interface for creating and saving ability dictionaries.
+
+    Attributes:
+        layout (QVBoxLayout): The layout of the main window.
+        ability_template (dict): The template for an ability dictionary.
+        labels (dict): A dictionary of QLabel objects for displaying labels.
+        line_edits (dict): A dictionary of QLineEdit or QTextEdit objects for user input.
+        save_button (QPushButton): The button for saving the ability dictionary to a JSON file.
+        new_button (QPushButton): The button for creating a new ability dictionary.
+
+    Methods:
+        __init__(): Initializes the main window.
+        new_dictionary(): Clears the input fields to create a new ability dictionary.
+        save_to_json(): Saves the ability dictionary to a JSON file.
+    """
     def __init__(self):
         super().__init__()
 
@@ -45,10 +63,16 @@ class MainWindow(QWidget):
         self.setLayout(self.layout)
         
     def new_dictionary(self):
+        """
+        Clears the input fields to create a new ability dictionary.
+        """
         for key in self.ability_template.keys():
             self.line_edits[key].clear()
 
     def save_to_json(self):
+        """
+        Saves the ability dictionary to a JSON file.
+        """
         for key in self.ability_template.keys():
             if key == "descrição":
                 text = self.line_edits[key].toPlainText()
